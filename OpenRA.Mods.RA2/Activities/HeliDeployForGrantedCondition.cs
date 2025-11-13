@@ -37,12 +37,17 @@ namespace OpenRA.Mods.RA2.Activities
 
 		protected override void OnFirstRun(Actor self)
 		{
-			if (!aircraft.CanLand(w.Map.CellContaining(self.CenterPosition)))
-			{
-				var cells = w.Map.AllCells.Where(c => aircraft.CanLand(c)).Select(c => w.Map.CenterOfCell(c));
-				var cell = w.Map.CellContaining(cells.ClosestToIgnoringPath(self.CenterPosition));
+			var currentCell = w.Map.CellContaining(self.CenterPosition);
 
-				QueueChild(new Fly(self, Target.FromCell(w, cell)));
+			if (!aircraft.CanLand(currentCell))
+			{
+				var landingPos = FindLandingPosition(self, currentCell, deploy.Info.LandingSearchRadius);
+
+				if (landingPos.HasValue)
+				{
+					var cell = w.Map.CellContaining(landingPos.Value);
+					QueueChild(new Fly(self, Target.FromCell(w, cell)));
+				}
 			}
 
 			// Turn to the required facing.
@@ -59,6 +64,35 @@ namespace OpenRA.Mods.RA2.Activities
 
 			QueueChild(new HeliDeployInner(self, deploy));
 			return true;
+		}
+
+		WPos? FindLandingPosition(Actor self, CPos origin, int searchRadius)
+		{
+			var landingPos = FindLandingPositionInRadius(self, origin, searchRadius);
+			if (landingPos.HasValue)
+				return landingPos;
+
+			if (searchRadius > 0)
+				return FindLandingPositionInRadius(self, origin, -1);
+
+			return null;
+		}
+
+		WPos? FindLandingPositionInRadius(Actor self, CPos origin, int radius)
+		{
+			var cells = radius > 0
+				? w.Map.FindTilesInAnnulus(origin, 1, radius)
+				: w.Map.AllCells;
+
+			var positions = cells
+				.Where(c => aircraft.CanLand(c))
+				.Select(c => w.Map.CenterOfCell(c))
+				.ToList();
+
+			if (positions.Count == 0)
+				return null;
+
+			return positions.ClosestToIgnoringPath(self.CenterPosition);
 		}
 	}
 
