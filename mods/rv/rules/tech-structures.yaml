@@ -54,6 +54,18 @@ caoild:
 	CashTricklerMultiplier:
 		Modifier: 125
 		RequiresCondition: orepurifier && megawealth
+	GrantConditionOnBotOwner@cheater:
+		Condition: enable-cheater-ai
+		Bots: cheater
+	GrantConditionOnBotOwner@vengeful:
+		Condition: enable-vengeful-ai
+		Bots: vengeful
+	CashTricklerMultiplier@cheater:
+		Modifier: 150
+		RequiresCondition: enable-cheater-ai && megawealth
+	CashTricklerMultiplier@vengeful:
+		Modifier: 200
+		RequiresCondition: enable-vengeful-ai && megawealth
 	IsometricSelectable:
 		DecorationHeight: 75
 	GrantConditionOnPrerequisite@orepurifier:

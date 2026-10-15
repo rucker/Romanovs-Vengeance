@@ -38,6 +38,8 @@ narefn:
 caoild:
 	-CashTrickler:
 	-CashTricklerMultiplier:
+	-CashTricklerMultiplier@cheater:
+	-CashTricklerMultiplier@vengeful:
 	-GrantConditionOnPrerequisite@orepurifier:
 
 camsc13:
