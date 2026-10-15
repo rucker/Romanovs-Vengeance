@@ -1428,9 +1428,10 @@ Player:
 	GrantConditionOnPrerequisite@no_bases:
 		Condition: no_bases
 		Prerequisites: hack.no_bases
-	####HarvesterBotModule@generic: Drop it due to performance
-	##	RequiresCondition: enable-generic-ai && !megawealth
-	##	HarvesterTypes: cmin, harv, gmin
+	HarvesterBotModule@generic:
+		RequiresCondition: enable-generic-ai && !megawealth
+		HarvesterTypes: cmin, harv, gmin
+		RefineryTypes: garefn, garefb, garefc, garefd, narefn, narefb, narefc, narefd, yarefn, yarfn2, yarfnb, yarfnc, yarfnd
 	PowerDownBotModule@generic:
 		RequiresCondition: enable-generic-ai
 	BuildingRepairBotModule@generic:
