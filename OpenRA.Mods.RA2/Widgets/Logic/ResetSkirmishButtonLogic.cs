@@ -17,20 +17,8 @@ namespace OpenRA.Mods.RA2.Widgets.Logic
 {
 	public class ResetSkirmishButtonLogic : ChromeLogic
 	{
-		[FluentReference]
-		const string ResetSkirmishTitle = "dialog-reset-skirmish.title";
-
-		[FluentReference]
-		const string ResetSkirmishPrompt = "dialog-reset-skirmish.prompt";
-
-		[FluentReference]
-		const string ResetSkirmishAccept = "dialog-reset-skirmish.confirm";
-
-		[FluentReference]
-		const string ResetSkirmishCancel = "dialog-reset-skirmish.cancel";
-
 		[ObjectCreator.UseCtor]
-		public ResetSkirmishButtonLogic(Widget widget, ModData modData, OrderManager orderManager, bool skirmishMode)
+		public ResetSkirmishButtonLogic(Widget widget, OrderManager orderManager, bool skirmishMode)
 		{
 			var button = (ButtonWidget)widget;
 			button.IsVisible = () => skirmishMode;
@@ -40,13 +28,7 @@ namespace OpenRA.Mods.RA2.Widgets.Logic
 				return localClient == null || !localClient.IsAdmin || localClient.IsReady;
 			};
 
-			button.OnClick = () => ConfirmationDialogs.ButtonPrompt(modData,
-				title: ResetSkirmishTitle,
-				text: ResetSkirmishPrompt,
-				onConfirm: () => orderManager.IssueOrder(Order.Command("reset_skirmish")),
-				confirmText: ResetSkirmishAccept,
-				onCancel: () => { },
-				cancelText: ResetSkirmishCancel);
+			button.OnClick = () => orderManager.IssueOrder(Order.Command("reset_skirmish"));
 		}
 	}
 }
