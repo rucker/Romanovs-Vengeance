@@ -17,6 +17,14 @@ Player:
 	GrantConditionOnBotOwner@vengeful:
 		Condition: enable-vengeful-ai
 		Bots: vengeful
+	ResourcePurifier@cheater:
+		Modifier: 50
+		ShowTicks: false
+		RequiresCondition: enable-cheater-ai
+	ResourcePurifier@vengeful:
+		Modifier: 100
+		ShowTicks: false
+		RequiresCondition: enable-vengeful-ai
 	GrantConditionOnBotOwner@generic:
 		Condition: enable-generic-ai
 		Bots: easy, cheater, vengeful

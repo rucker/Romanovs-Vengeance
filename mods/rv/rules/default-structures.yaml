@@ -4,7 +4,6 @@
 	Inherits@MC: ^MindControllableBuilding
 	Inherits@SPY: ^DisabledByInfiltration
 	Inherits@SHAPE: ^4x4Shape
-	Inherits@AICash: ^AICashCheat
 	Inherits@AI: ^AIControl
 	Buildable:
 		Queue: Building.Debug
@@ -389,7 +388,6 @@
 	Inherits@DISK: ^DiskStealable
 	Inherits@MC: ^MindControllableBuilding
 	Inherits@SHAPE: ^NormalRefineryShape
-	Inherits@AICash: ^AICashCheat
 	Buildable:
 		Queue: Building.Shared, Building
 		BuildPaletteOrder: 30

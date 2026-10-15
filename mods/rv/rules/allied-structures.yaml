@@ -1421,7 +1421,6 @@ gaorep:
 	Inherits@EMPULSE: ^DisabledByEMP
 	Inherits@MC: ^MindControllableBuilding
 	Inherits@SHAPE: ^3x3Shape
-	Inherits@AICash: ^AICashCheat
 	Buildable:
 		Queue: Building.Shared, Building.Allies
 		BuildPaletteOrder: 120
