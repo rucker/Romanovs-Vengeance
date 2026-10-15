@@ -195,6 +195,15 @@ button-production-types-power-tooltip = Commander's Powers
 button-production-types-scroll-up-tooltip = Scroll up
 button-production-types-scroll-down-tooltip = Scroll down
 
+## lobby.yaml
+button-reset-skirmish = Reset Skirmish
+
+dialog-reset-skirmish =
+    .title = Reset Skirmish
+    .prompt = Reset all lobby options, bots and your player settings to their defaults?
+    .confirm = Reset
+    .cancel = Cancel
+
 ## mainmenu-prerelease-notification.yaml
 label-mainmenu-prerelease-notification-prompt-title = Romanov's Vengeance Disclaimer
 label-mainmenu-prerelease-notification-prompt-text-a = This mod is based on the pre-alpha build of OpenRA's Red Alert 2 mod, which
