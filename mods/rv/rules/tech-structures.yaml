@@ -61,10 +61,10 @@ caoild:
 		Condition: enable-vengeful-ai
 		Bots: vengeful
 	CashTricklerMultiplier@cheater:
-		Modifier: 150
+		Modifier: 175
 		RequiresCondition: enable-cheater-ai && megawealth
 	CashTricklerMultiplier@vengeful:
-		Modifier: 200
+		Modifier: 250
 		RequiresCondition: enable-vengeful-ai && megawealth
 	IsometricSelectable:
 		DecorationHeight: 75

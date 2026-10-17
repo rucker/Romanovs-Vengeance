@@ -18,11 +18,11 @@ Player:
 		Condition: enable-vengeful-ai
 		Bots: vengeful
 	ResourcePurifier@cheater:
-		Modifier: 50
+		Modifier: 75
 		ShowTicks: false
 		RequiresCondition: enable-cheater-ai
 	ResourcePurifier@vengeful:
-		Modifier: 100
+		Modifier: 150
 		ShowTicks: false
 		RequiresCondition: enable-vengeful-ai
 	GrantConditionOnBotOwner@generic:
