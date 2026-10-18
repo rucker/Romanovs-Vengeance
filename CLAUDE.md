@@ -8,8 +8,9 @@ Romanov's Vengeance (mod id `rv`) is a third-party [OpenRA](https://www.openra.n
 
 ## Engine dependency
 
-- The engine is **not** upstream OpenRA. It is the fork `jimicze/OpenRA` (itself a fork of `MustaphaTR/OpenRA`, carrying extra performance and crash fixes), pinned by commit in `mod.config` (`ENGINE_VERSION`). That fork bundles `OpenRA.Mods.AS` (Attacque Supérior), which the mod uses heavily alongside `Common`, `Cnc` and `D2k`.
-- `make` runs `fetch-engine.sh`, which downloads that commit into `./engine` (git-ignored) and builds it. Treat `./engine` as read-only, because it gets re-fetched whenever `ENGINE_VERSION` changes. Engine bumps are done by editing `ENGINE_VERSION` (see commits like "Engine update.").
+- The engine is **not** upstream OpenRA. It is the fork `rucker/OpenRA` (branch `rv-fixes`), which carries RV crash fixes on top of `jimicze/OpenRA` (performance and crash fixes), itself a fork of `MustaphaTR/OpenRA`. It's pinned by commit in `mod.config` (`ENGINE_VERSION`, downloaded from `AUTOMATIC_ENGINE_SOURCE`). The engine bundles `OpenRA.Mods.AS` (Attacque Supérior), which the mod uses heavily alongside `Common`, `Cnc` and `D2k`.
+- By default `make` runs `fetch-engine.sh`, which downloads that commit's source into `./engine` (git-ignored) and builds it. A downloaded `./engine` is re-fetched whenever `ENGINE_VERSION` changes, so local edits there are lost.
+- Engine changes go in the fork: commit on `rv-fixes`, push, then set `ENGINE_VERSION` to the new commit. For local engine work, `./engine` can be a `git worktree` of a fork clone (`git -C ../OpenRA worktree add <repo>/engine rv-fixes`), with `AUTOMATIC_ENGINE_MANAGEMENT="False"` and `ENGINE_VERSION` set to the contents of the clone's `engine/VERSION` in `user.config`. That file is static in the fork, so the launch scripts' version check needs it. Don't use a symlink for `./engine`: MSBuild then sees the engine projects under two paths and the build fails with missing reference assemblies.
 - Before adding a C# trait, look for an existing one in `engine/OpenRA.Mods.AS` or `engine/OpenRA.Mods.Common`. Trait names used in YAML resolve across every assembly listed under `Assemblies:` in `mods/rv/mod.yaml`.
 - `mod.config` must keep LF line endings. The `*.sh` scripts must stay executable; CI checks both.
 
